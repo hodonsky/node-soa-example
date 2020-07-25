@@ -1,0 +1,57 @@
+{
+  "name"       : "donsky_server",
+  "version"    : "1.0.0",
+  "description": "Donsky's Server",
+  "author"     : "eric.hodonsky@gmail.com",
+  "license"    : "MIT",
+  "scripts": {
+    "test"       : "mocha --exit --require /usr/src/deps/node_modules/babel-core/register",
+    "build"      : "npx babel --config-file /usr/src/deps/babel.json --out-dir /usr/src/dist --source-maps --copy-files /usr/src/app && cp ./package.json /usr/src/dist",
+    "prestart"   : "node /usr/src/deps/node_modules/.bin/pm2 flush",
+    "start"      : "node /usr/src/deps/node_modules/.bin/pm2 start --no-daemon ${SOA_PATH} -i max",
+    "restart"    : "npm run build && node /usr/src/deps/node_modules/.bin/pm2 kill && sleep 2 && npm start",
+    "poststart"  : "node /usr/src/deps/node_modules/.bin/pm2 logs --format 'all'"
+  },
+  "engines": {
+    "node": ">=12.13.1",
+    "npm" : ">=6.14.7"
+  },
+  "dependencies": {
+    "aws-sdk": "2.715.0",
+    "crypto-js": "4.0.0",
+    "@donsky/node-gateway": "0.4.1",
+    "@donsky/node-service": "0.4.1",
+    "njwt": "1.0.0",
+    "pm2": "^4.4.0",
+    "sha256": "0.2.0",
+    "uuid": "8.2.0"
+  },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-plugin-tcomb": "0.4.0",
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-private-methods": "^7.10.4",
+    "@babel/plugin-proposal-do-expressions": "^7.10.4",
+    "@babel/plugin-proposal-export-default": "^7.0.0-beta.32",
+    "@babel/plugin-proposal-export-default-from": "^7.10.4",
+    "@babel/plugin-proposal-export-namespace": "^7.0.0-beta.32",
+    "@babel/plugin-proposal-export-namespace-from": "^7.10.4",
+    "@babel/plugin-proposal-function-bind": "^7.10.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.4",
+    "@babel/plugin-proposal-partial-application": "^7.10.4",
+    "@babel/plugin-proposal-pipeline-operator": "^7.10.4",
+    "@babel/plugin-proposal-throw-expressions": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^8.0.1",
+    "rimraf": "^3.0.2",
+    "sinon": "^9.0.2",
+    "tcomb": "^3.2.29"
+  }
+}

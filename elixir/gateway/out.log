@@ -1,0 +1,20 @@
+Compiling 1 file (.ex)
+Hello World
+Hello World
+done sleeping
+
+15:19:38.069 [info]  Application gateway exited: normal
+
+BREAK: (a)bort (A)bort with dump (c)ontinue (p)roc info (i)nfo
+       (l)oaded (v)ersion (k)ill (D)b-tables (d)istribution
+Hello World
+done sleeping
+
+15:22:03.918 [info]  Application gateway exited: normal
+
+BREAK: (a)bort (A)bort with dump (c)ontinue (p)roc info (i)nfo
+       (l)oaded (v)ersion (k)ill (D)b-tables (d)istribution
+Hello World
+done sleeping
+
+15:22:13.701 [info]  Application gateway exited: normal

@@ -1,0 +1,221 @@
+2020-07-26 16:22:01 =CRASH REPORT====
+  crasher:
+    initial call: Elixir.Gateway:-start/2-fun-0-/0
+    pid: <0.265.0>
+    registered_name: []
+    exception error: {{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.264.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.264.0>]
+    dictionary: [{'$callers',[<0.264.0>]},{gen_server_call_timeout,60000}]
+    trap_exit: false
+    status: running
+    heap_size: 6772
+    stack_size: 28
+    reductions: 3316
+  neighbours:
+2020-07-26 16:22:01 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.263.0>
+    registered_name: []
+    exception exit: {{{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]},[{application_master,terminate,2,[{file,"application_master.erl"},{line,232}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.262.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.44.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 28
+    reductions: 11333
+  neighbours:
+2020-07-26 16:23:18 =CRASH REPORT====
+  crasher:
+    initial call: Elixir.Gateway:-start/2-fun-0-/0
+    pid: <0.275.0>
+    registered_name: []
+    exception error: {{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.274.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.274.0>]
+    dictionary: [{gen_server_call_timeout,60000},{'$callers',[<0.274.0>]}]
+    trap_exit: false
+    status: running
+    heap_size: 6772
+    stack_size: 28
+    reductions: 3328
+  neighbours:
+2020-07-26 16:23:18 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.273.0>
+    registered_name: []
+    exception exit: {{{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]},[{application_master,terminate,2,[{file,"application_master.erl"},{line,232}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.272.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.44.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 28
+    reductions: 11333
+  neighbours:
+2020-07-26 16:23:32 =CRASH REPORT====
+  crasher:
+    initial call: Elixir.Gateway:-start/2-fun-0-/0
+    pid: <0.265.0>
+    registered_name: []
+    exception error: {{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.264.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.264.0>]
+    dictionary: [{'$callers',[<0.264.0>]},{gen_server_call_timeout,60000}]
+    trap_exit: false
+    status: running
+    heap_size: 6772
+    stack_size: 28
+    reductions: 3560
+  neighbours:
+2020-07-26 16:23:32 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.263.0>
+    registered_name: []
+    exception exit: {{{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]},[{application_master,terminate,2,[{file,"application_master.erl"},{line,232}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.262.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.44.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 28
+    reductions: 11352
+  neighbours:
+2020-07-26 16:23:52 =CRASH REPORT====
+  crasher:
+    initial call: Elixir.Gateway:-start/2-fun-0-/0
+    pid: <0.254.0>
+    registered_name: []
+    exception error: {{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.253.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.253.0>]
+    dictionary: [{gen_server_call_timeout,60000},{'$callers',[<0.253.0>]}]
+    trap_exit: false
+    status: running
+    heap_size: 1598
+    stack_size: 28
+    reductions: 3197
+  neighbours:
+2020-07-26 16:23:52 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.252.0>
+    registered_name: []
+    exception exit: {{{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]},[{application_master,terminate,2,[{file,"application_master.erl"},{line,232}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.251.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.44.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 28
+    reductions: 11283
+  neighbours:
+2020-07-26 16:24:24 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.262.0>
+    registered_name: []
+    exception exit: {{bad_return,{{'Elixir.Gateway',start,[normal,[]]},{'EXIT',{undef,[{'Elixir.Gateway',start,[normal,[]],[]},{application_master,start_it_old,4,[{file,"application_master.erl"},{line,277}]}]}}}},[{application_master,init,4,[{file,"application_master.erl"},{line,138}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.261.0>]
+    message_queue_len: 1
+    messages: [{'EXIT',<0.263.0>,normal}]
+    links: [<0.261.0>,<0.44.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 376
+    stack_size: 28
+    reductions: 224
+  neighbours:
+2020-07-26 16:24:31 =CRASH REPORT====
+  crasher:
+    initial call: Elixir.Gateway:-start/2-fun-0-/0
+    pid: <0.264.0>
+    registered_name: []
+    exception error: {{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.263.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.263.0>]
+    dictionary: [{'$callers',[<0.263.0>]},{gen_server_call_timeout,60000}]
+    trap_exit: false
+    status: running
+    heap_size: 1598
+    stack_size: 28
+    reductions: 3199
+  neighbours:
+2020-07-26 16:24:31 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.262.0>
+    registered_name: []
+    exception exit: {{{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,5}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]},[{application_master,terminate,2,[{file,"application_master.erl"},{line,232}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.261.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.44.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 28
+    reductions: 11283
+  neighbours:
+2020-07-26 16:30:51 =CRASH REPORT====
+  crasher:
+    initial call: Elixir.Gateway:-start/2-fun-0-/0
+    pid: <0.264.0>
+    registered_name: []
+    exception error: {{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,6}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.263.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.263.0>]
+    dictionary: [{gen_server_call_timeout,60000},{'$callers',[<0.263.0>]}]
+    trap_exit: false
+    status: running
+    heap_size: 1598
+    stack_size: 28
+    reductions: 3192
+  neighbours:
+2020-07-26 16:30:51 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.262.0>
+    registered_name: []
+    exception exit: {{{badmatch,{error,unknown_host}},[{'Elixir.Gateway','-start/2-fun-0-',0,[{file,"lib/gateway.ex"},{line,6}]},{'Elixir.Task.Supervised',invoke_mfa,2,[{file,"lib/task/supervised.ex"},{line,90}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]},[{application_master,terminate,2,[{file,"application_master.erl"},{line,232}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,226}]}]}
+    ancestors: [<0.261.0>]
+    message_queue_len: 0
+    messages: []
+    links: [<0.44.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 987
+    stack_size: 28
+    reductions: 11293
+  neighbours:

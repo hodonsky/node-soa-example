@@ -1,2 +1,5 @@
 node_modules
 .vagrant
+node-gateway
+node-service
+node-avro

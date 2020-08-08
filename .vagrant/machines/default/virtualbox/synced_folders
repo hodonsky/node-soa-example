@@ -1,1 +1,0 @@
-{"virtualbox":{"/home/ubuntu/resources":{"guestpath":"/home/ubuntu/resources","hostpath":"/Users/erichodonsky/Projects/Numaro/SOA/resources","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/erichodonsky/Projects/Numaro/SOA/resources","disabled":false,"__vagrantfile":true}}}

@@ -1,7 +1,7 @@
 "use strict"
 
 import lambda from "./getTokenFn"
-import { default as config, errorAVRO } from "../config"
+import config from "../config"
 
 export default {
   topic: config.topic,

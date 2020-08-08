@@ -16,6 +16,6 @@ source ~/.profile
 
 docker-compose up -d rabbitmq dynamodb
 
-source ./.scripts/dynamodb/build.sh
+source .scripts/dynamodb/build.sh
 
-docker-compose up -d node-gateway node-service-auth
+docker-compose up -d elixir-service-auth

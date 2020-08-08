@@ -1,29 +1,16 @@
 defmodule Gateway do
-  def waitForMeassage do
-    receive do
-      {:basic_deliver, payload, _meta} ->
-        IO.puts( " [x] Received #{payload}" )
-        waitForMeassage()
-    end
-  end
+  require Supervisor
+  use Router
+  use Application
+
   def start( _type, _args ) do
-    connOptions = [ host: System.get_env("MQ_HOSTNAME"), port: System.get_env("MQ_PORT"), username: System.get_env("MQ_USERNAME"), password: System.get_env("MQ_PASSWORD") ]
-    resTopic = "auth-res-1-A"
-    { :ok, connection } = AMQP.Connection.open( connOptions )
-    { :ok, channel } = AMQP.Channel.open( connection )
-    AMQP.Queue.declare( channel, resTopic )
-    Task.start( fn ->
-      AMQP.Basic.consume( channel,
-                   resTopic,
-                   nil, # consumer process, defaults to self()
-                   no_ack: true)
-      Task.start( fn -> 
-        :timer.sleep 5000
-        AMQP.Basic.publish( channel, "", "auth-res-1-A", "Here is a message")
-      end )
-      IO.puts( "Waiting For Message" )
-      waitForMeassage()
-      AMQP.Connection.close(connection)
-    end )
+    children = [
+      Plug.Adapters.Cowboy.child_spec(
+        scheme: :http,
+        plug: Router,
+        options: [ port: String.to_integer( System.get_env( "PORT" ) ) ]
+      )
+    ]
+    Supervisor.start_link( children, [strategy: :one_for_one] )
   end
 end

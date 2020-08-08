@@ -12,7 +12,6 @@ const USER_CREDENTIALS_TABLE = "UserCredentials"
 const dynamoDocClient = new DynamoDB()
 
 export default async function({ username, password }) {
-  console.log( "username:password", `${username}:${password}`)
   const passwordHash = sha256.x2( password )
   const errorPrefix = "Authentication::credentials:"
 

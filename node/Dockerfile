@@ -15,7 +15,6 @@ RUN npm i
 ENV NODE_PATH=/usr/src/deps/node_modules
 ENV NODE_ENV=local
 
-
 EXPOSE ${EXPOSE_PORT}
 
 CMD npm run restart

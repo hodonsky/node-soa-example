@@ -1,26 +1,26 @@
 {
-  "name"       : "donsky_server",
-  "version"    : "1.0.0",
+  "name": "donsky_server",
+  "version": "1.0.0",
   "description": "Donsky's Server",
-  "author"     : "eric.hodonsky@gmail.com",
-  "license"    : "MIT",
+  "author": "eric.hodonsky@gmail.com",
+  "license": "MIT",
   "scripts": {
-    "test"       : "mocha --exit --require /usr/src/deps/node_modules/babel-core/register",
-    "build"      : "npx babel --config-file /usr/src/deps/babel.json --out-dir /usr/src/dist --source-maps --copy-files /usr/src/app && cp ./package.json /usr/src/dist",
-    "prestart"   : "node /usr/src/deps/node_modules/.bin/pm2 flush",
-    "start"      : "node /usr/src/deps/node_modules/.bin/pm2 start --no-daemon ${SOA_PATH} -i max",
-    "restart"    : "npm run build && node /usr/src/deps/node_modules/.bin/pm2 kill && sleep 2 && npm start",
-    "poststart"  : "node /usr/src/deps/node_modules/.bin/pm2 logs --format 'all'"
+    "test": "mocha --exit --require /usr/src/deps/node_modules/babel-core/register",
+    "build": "npx babel --config-file /usr/src/deps/babel.json --out-dir /usr/src/dist --source-maps --copy-files /usr/src/app && cp ./package.json /usr/src/dist",
+    "prestart": "node /usr/src/deps/node_modules/.bin/pm2 flush",
+    "start": "node /usr/src/deps/node_modules/.bin/pm2 start --no-daemon ${SOA_PATH} -i max",
+    "restart": "npm run build && node /usr/src/deps/node_modules/.bin/pm2 kill && sleep 2 && npm start",
+    "poststart": "node /usr/src/deps/node_modules/.bin/pm2 logs --format 'all'"
   },
   "engines": {
     "node": ">=12.13.1",
-    "npm" : ">=6.14.7"
+    "npm": ">=6.14.7"
   },
   "dependencies": {
     "aws-sdk": "2.715.0",
     "crypto-js": "4.0.0",
-    "@donsky/node-gateway": "^0.5.2",
-    "@donsky/node-service": "^0.5.2",
+    "@donsky/node-gateway": "^1.0.0",
+    "@donsky/node-service": "^1.0.0",
     "koa-cors": "^0.0.16",
     "koa-helmet": "^5.2.0",
     "koa-morgan": "^1.0.1",

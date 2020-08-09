@@ -16,12 +16,13 @@ if ( process.env.NODE_ENV === "production" ){
       redirectMethods      : [ "HEAD", "OPTIONS", "GET", "POST" ],
       specCompliantDisallow: true
     })
-  )
+  ) 
 }
 
 Gateway.configure({ koaMiddleware })
 const gateway = new Gateway([ ...authActions ])
-gateway.on( "ready", msg => msg |> console.log )
-gateway.on( "error", err => err |> console.error )
+
+gateway.on( "ready", console.log )
+gateway.on( "error", console.error )
 
 export default gateway

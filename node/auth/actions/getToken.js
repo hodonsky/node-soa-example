@@ -5,16 +5,13 @@ import config from "../config"
 
 export default {
   topic: config.topic,
-  auth: false,
-  method: "post",
-  route: "/auth",
   action: "getToken",
-  lambda: lambda,
+  lambda,
   requestTransformers: [
     ({ request: { body: { username, password } }, header: { 'user-agent': userAgent }, ip }) =>
       ({ username, password, meta: { ip, userAgent } })
   ],
-  responseTransformers:[
+  responseTransformers: [
     ({response:{ token }}) => ({ token })
   ],
   requestAVRO: [

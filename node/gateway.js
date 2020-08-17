@@ -1,7 +1,10 @@
 "use strict"
 
 import Gateway from "@donsky/node-gateway"
-import authActions from "./auth/actions"
+import getEmail from "./auth/actions/getEmail"
+import getToken from "./auth/actions/getToken"
+import authToken from "./auth/actions/authToken"
+
 
 const koaMiddleware = [
   require( "koa-cors"   )(),
@@ -19,10 +22,15 @@ if ( process.env.NODE_ENV === "production" ){
   ) 
 }
 
-Gateway.configure({ koaMiddleware })
-const gateway = new Gateway([ ...authActions ])
+const options = { koaMiddleware }
+const gateway = new Gateway( options )
 
-gateway.on( "ready", console.log )
-gateway.on( "error", console.error )
+
+gateway
+  .on( "ready", console.log )
+  .on( "error", err => console.log( "ERROR:", err ) )
+  .post( "/auth", getToken )
+  .post( "/getEmail/:userId", authToken, getEmail )
+  .listen()
 
 export default gateway

@@ -37,6 +37,7 @@ services:
      - rabbitmq
     volumes:
      - /home/ubuntu/resources/node/:/usr/src/app
+     #- /home/ubuntu/resources/node-gateway/:/usr/src/deps/node_modules/@donsky/node-gateway
 
   node-service-auth:
     build:
@@ -65,6 +66,7 @@ services:
       - rabbitmq
     volumes:
       - /home/ubuntu/resources/node:/usr/src/app
+      #- /home/ubuntu/resources/node-service/:/usr/src/deps/node_modules/@donsky/node-service
   
   # elixir-gateway:
   #   build:

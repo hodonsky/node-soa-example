@@ -20,16 +20,7 @@
     "@babel/plugin-proposal-function-bind",
     "@babel/plugin-proposal-partial-application",
     "@babel/plugin-proposal-object-rest-spread",
-    [ "@babel/plugin-proposal-pipeline-operator", { "proposal": "fsharp" } ],
-    [ "tcomb",
-      {
-        "globals": [
-          {
-            "Class": true
-          }
-        ]
-      }
-    ]
+    [ "@babel/plugin-proposal-pipeline-operator", { "proposal": "fsharp" } ]
   ],
   "ignore": [
     "node_modules/*",

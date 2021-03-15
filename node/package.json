@@ -22,7 +22,7 @@
     "@donsky/node-gateway": "^2.0.0",
     "@donsky/node-service": "^2.0.0",
     "koa-cors": "^0.0.16",
-    "koa-helmet": "^5.2.0",
+    "koa-helmet": "^6.1.0",
     "koa-morgan": "^1.0.1",
     "koa-sslify": "^4.0.3",
     "morgan": "^1.10.0",

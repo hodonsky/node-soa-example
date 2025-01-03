@@ -10,6 +10,8 @@ WORKDIR /usr/src/deps
 ADD ./package.json      /usr/src/deps/package.json
 ADD ./package-lock.json /usr/src/deps/package-lock.json
 ADD ./babel.json        /usr/src/deps/babel.json
+ADD ./node-gateway      /usr/src/deps/node-gateway
+ADD ./node-service      /usr/src/deps/node-service
 RUN npm i
 
 ENV NODE_PATH=/usr/src/deps/node_modules

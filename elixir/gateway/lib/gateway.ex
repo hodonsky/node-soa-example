@@ -1,13 +1,14 @@
 defmodule Gateway do
   require Supervisor
   use Router
-  use Application
+  #use Application
 
-  def start( _type, _args ) do
+  #def start( _type, args ) do
+  def init( args )
     children = [
-      Plug.Adapters.Cowboy.child_spec(
+      Plug.Cowboy.child_spec(
         scheme: :http,
-        plug: Router,
+        plug: args.router,
         options: [ port: String.to_integer( System.get_env( "PORT" ) ) ]
       )
     ]

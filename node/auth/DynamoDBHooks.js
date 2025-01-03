@@ -1,18 +1,34 @@
 "use strict"
 
-import AWS from "aws-sdk"
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb"
+import {
+  DynamoDBDocumentClient,
+  PutCommand,
+  GetCommand,
+  DeleteCommand,
+  QueryCommand,
+  ScanCommand,
+  UpdateCommand
+} from "@aws-sdk/lib-dynamodb"
 import { awsConfig, dynamodbConfig } from "./config"
 
 /**
  * Hooks to DynamoDB
  */
 export default class {
+  
+  #docClient = null
+
   /**
    * Constructor
    */
   constructor(){
-    AWS.config.update({ ...dynamodbConfig, region: awsConfig.region })
-    this.docClient = new AWS.DynamoDB.DocumentClient()
+    this.#docClient = DynamoDBDocumentClient.from(
+                      new DynamoDBClient({
+                        region: awsConfig.region,
+                        ...dynamodbConfig
+                      })
+                    )
   }
 
   /**
@@ -21,13 +37,13 @@ export default class {
    * @param {Object} putItem - the item to put into the table
    * @returns {Promise<string>} the response message from DynamoDB
    */
-  put( table, putItem ){
+  async put( table, putItem ){  
     try {
-      return this.docClient.put({ TableName: table, Item: putItem }).promise()
-    } catch ( error ){
+      return await this.#docClient.send( new PutCommand({ TableName: table, Item: putItem }) )
+    } catch ( err ) {
       throw {
-        name   : `DynamoHooks::put:${error.name}`,
-        message: error.message
+        name   : `DynamoHooks::put:${err.name}`,
+        message: err.message
       }
     }
   }
@@ -38,9 +54,9 @@ export default class {
    * @param {Object} key - the key to get the item
    * @returns {Promise<string>} the item retrieved from DynamoDB
    */
-  get( table, key ) {
+  async get( table, key ) {
     try {
-      return this.docClient.get({ TableName: table, Key: key }).promise()
+      return await this.#docClient.send( new GetCommand({ TableName: table, Key: key }) )
     } catch ( error ){
       throw {
         name   : `DynamoHooks::get:${error.name}`,
@@ -55,9 +71,9 @@ export default class {
    * @param {Object} key - the key of the item to delete
    * @returns {Promise<string>} the response message from DynamoDB
    */
-  dynamoDelete( table, key ){
+  async dynamoDelete( table, key ){
     try {
-      return this.docClient.delete({ TableName: table, Key: key }).promise()
+      return await this.#docClient.delete( new DeleteCommand({ TableName: table, Key: key }) )
     } catch ( error ){
       throw {
         name   : `DynamoHooks::dynamoDelete:${error.name}`,
@@ -75,7 +91,7 @@ export default class {
    * @param {string} projectionExpression
    * @returns {Promise<string>} the items from DynamoDB matching the query
    */
-  query( table, keyConditionExpression, expressionAttributeNames,
+  async query( table, keyConditionExpression, expressionAttributeNames,
     attributeVals, projectionExpression ){
     const params = {
       TableName                : table,
@@ -86,7 +102,7 @@ export default class {
     }
 
     try {
-      return this.docClient.query( params ).promise()
+      return await this.#docClient.query( new QueryCommand( params ) )
     } catch ( error ){
       throw {
         name   : `DynamoHooks::query:${error.name}`,
@@ -102,7 +118,7 @@ export default class {
    * @param {Object} attributeVals
    * @returns {Promise<string>} the items from DynamoDB matching the parameters
    */
-  scan( table, filter, attributeVals ){
+  async scan( table, filter, attributeVals ){
     const params = {
       TableName                : table,
       FilterExpression         : filter,
@@ -110,7 +126,7 @@ export default class {
     }
 
     try {
-      return this.docClient.scan( params ).promise()
+      return await this.#docClient.scan( new ScanCommand( params ) )
     } catch ( error ){
       throw {
         name   : `DynamoHooks::scan:${error.name}`,
@@ -124,9 +140,9 @@ export default class {
    * @param {Object} params - the parameters to update the DB with
    * @returns {Promise<string>} the response message from DynamoDB
    */
-  update( params ){
+  async update( params ){
     try {
-      return this.docClient.update( params ).promise()
+      return await this.#docClient.update( new UpdateCommand( params ) )
     } catch ( error ){
       throw {
         name   : `DynamoHooks::update:${error.name}`,

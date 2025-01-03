@@ -1,8 +1,8 @@
-defmodule Gateway.MixProject do
+defmodule Sample.MixProject do
   use Mix.Project
   def project do
     [
-      app: :gateway,
+      app: :sample,
       version: "0.1.0",
       elixir: "~> 1.12.2",
       start_permanent: Mix.env() == :prod,
@@ -12,16 +12,12 @@ defmodule Gateway.MixProject do
   def application do
     [
       mod: { Gateway, [] },
-      applications: [ :amqp ],
-      extra_applications: [ :lager, :logger, :cowboy, :plug_cowboy, :plug, :poison ]
+      applications: [],
+      extra_applications: [ :lager, :logger, :plug, :poison ]
     ]
   end
   def deps do
     [
-      # {:amqp, "~> 3.3.0"},
-      {:amqp, "~> 1.5.0"},
-      {:cowboy, "~> 2.12.0"},
-      {:plug_cowboy, "~> 2.7.1"},
       {:plug, "~> 1.16.1"},
       {:poison, "~> 6.0"}
     ]

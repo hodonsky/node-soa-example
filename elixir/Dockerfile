@@ -1,4 +1,4 @@
-FROM elixir
+FROM elixir:1.12.2
 
 ARG EXPOSE_PORT
 ARG MODULE

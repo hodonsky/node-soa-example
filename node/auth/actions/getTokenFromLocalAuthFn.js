@@ -1,8 +1,3 @@
-"use strict"
-
-import sha256 from "sha256"
-import njwt from "njwt"
-
 import DynamoDB from "../DynamoDBHooks"
 import config from "../config"
 
@@ -11,7 +6,7 @@ const USER_CREDENTIALS_TABLE = "UserCredentials"
 
 const dynamoDocClient = new DynamoDB()
 
-export default async function({ username, password }) {
+export default async function getTokenFromLocalAuth({ username, password }) {
   const passwordHash = sha256.x2( password )
   const errorPrefix = "Authentication::credentials:"
 

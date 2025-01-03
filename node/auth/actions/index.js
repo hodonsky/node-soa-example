@@ -1,5 +1,6 @@
 "use strict"
-import getToken from "./getToken"
+import getTokenFromGoogleOAuth from "./getTokenFromGoogleOAuth"
+import getTokenFromLocalAuth from "./getTokenFromLocalAuth"
 
-export const actions = { getToken }
-export default [ getToken ]
+export const actions = { getTokenFromGoogleOAuth, getTokenFromLocalAuth }
+export default [ getTokenFromGoogleOAuth, getTokenFromLocalAuth ]

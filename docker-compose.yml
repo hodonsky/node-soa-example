@@ -1,14 +1,19 @@
-version: "3.8"
 services:
   rabbitmq:
-    image: rabbitmq:management
+    image: rabbitmq:3.13-management
     ports:
+     - "5552:5552"
      - "5672:5672"
      - "15672:15672"
     environment:
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: -rabbitmq_stream advertised_host localhost
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: Abcd1234
-    restart: always   
+    restart: always
+    command: >
+      sh -c "rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management && rabbitmq-server"
+    
+
   dynamodb:
     image: instructure/dynamo-local-admin
     ports:
@@ -16,98 +21,100 @@ services:
      - "8001:8001"
     restart: always
   
-  # node-gateway:
+  node-gateway:
+    build:
+      args:
+        - EXPOSE_PORT=8080
+      context: ./node
+    ports:
+     - "8080:8080"
+    environment:
+     - HOSTNAME=gateway
+     - MQ_HOSTNAME=rabbitmq
+     - MQ_PROTOCOL=amqp
+     - MQ_PORT=5672
+     - MQ_PASSWORD=Abcd1234
+     - MQ_SERVICE_REGISTRY=service.registry
+     - MQ_USERNAME=admin
+     - PORT=8080
+     - SOA_PATH=/usr/src/dist/gateway.js
+    restart: on-failure
+    depends_on:
+     - rabbitmq
+    volumes:
+     - ./node/:/usr/src/app
+
+  node-service-auth:
+    build:
+      context: ./node
+    environment:
+      - AUTHENTICATION_SECRET=secretFake
+      - AWS_REGION=us-east-1
+      - DYNAMODB_URL=http://dynamodb:8000
+      - DYNAMODB_ACCESS_KEY=fakeKey
+      - DYNAMODB_ACCESS_SECRET=fakeSecret
+      - HOSTNAME=auth
+      - MQ_HOSTNAME=rabbitmq
+      - MQ_PORT=5672
+      - MQ_PASSWORD=Abcd1234
+      - MQ_SERVICE_REGISTRY=service.registry
+      - MQ_USERNAME=admin
+      - SOA_PATH=/usr/src/dist/auth/service.js
+    restart: on-failure
+    depends_on:
+      - dynamodb
+      - rabbitmq
+    volumes:
+      - ./node:/usr/src/app
+  
+  # elixir-gateway:
   #   build:
   #     args:
   #       - EXPOSE_PORT=80
-  #     context: /home/ubuntu/resources/node
+  #       - MODULE=gateway
+  #     context: ./elixir
   #   ports:
   #    - "80:80"
   #   environment:
-  #    - HOSTNAME=gateway
-  #    - SOA_PATH=/usr/src/dist/gateway.js
-  #    - PORT=80
-  #    - MQ_PROTOCOL=amqp
-  #    - MQ_HOSTNAME=rabbitmq
-  #    - MQ_PORT=5672
-  #    - MQ_USERNAME=admin
-  #    - MQ_PASSWORD=Abcd1234
-  #   restart: on-failure
+  #   - GATEWAY_ENV=local
+  #   - HOSTNAME=gateway
+  #   - PORT=80
+  #   - MQ_PROTOCOL=amqp
+  #   - MQ_HOSTNAME=rabbitmq
+  #   - MQ_PORT=5672
+  #   - MQ_USERNAME=admin
+  #   - MQ_PASSWORD=Abcd1234
+  #   - MQ_SERVICE_REGISTRY=service.registry
+  #   - MQ_TOPIC=gateway
   #   depends_on:
   #    - rabbitmq
+  #   restart: on-failure
   #   volumes:
-  #    - /home/ubuntu/resources/node/:/usr/src/app
-
-  # node-service-auth:
+  #     - ./elixir/gateway/lib/:/usr/src/app/lib/
+  
+  # elixir-service-auth:
   #   build:
-  #     context: /home/ubuntu/resources/node
+  #     args:
+  #       - MODULE=service
+  #     context: ./elixir
   #   environment:
+  #     - SERVICE_ENV=local
   #     - HOSTNAME=auth
-  #     - SOA_PATH=/usr/src/dist/auth/service.js
-  #     - AUTHENTICATION_SECRET=secretFake
+  #     - AUTHENTICATION_SECRET=2af0ba9d-78d3-429b-a7f6-8ac973598d2
   #     - MQ_PROTOCOL=amqp
   #     - MQ_HOSTNAME=rabbitmq
   #     - MQ_PORT=5672
   #     - MQ_USERNAME=admin
   #     - MQ_PASSWORD=Abcd1234
-  #     - MQ_QUEUE=auth
+  #     - MQ_SERVICE_REGISTRY=service.registry
+  #     - MQ_TOPIC=auth
   #     - AWS_REGION=us-east-1
   #     - DYNAMODB_URL=http://dynamodb:8000
   #     - DYNAMODB_ACCESS_KEY=fakeKey
   #     - DYNAMODB_ACCESS_SECRET=fakeSecret
-  #   restart: on-failure
   #   depends_on:
-  #     - dynamodb
   #     - rabbitmq
+  #     - dynamodb
+  #   restart: on-failure
   #   volumes:
-  #     - /home/ubuntu/resources/node:/usr/src/app
-  
-  elixir-gateway:
-    build:
-      args:
-        - EXPOSE_PORT=80
-        - MODULE=gateway
-      context: /home/ubuntu/resources/elixir
-    ports:
-     - "80:80"
-    environment:
-    - GATEWAY_ENV=local
-    - HOSTNAME=gateway
-    - PORT=80
-    - MQ_PROTOCOL=amqp
-    - MQ_HOSTNAME=rabbitmq
-    - MQ_PORT=5672
-    - MQ_USERNAME=admin
-    - MQ_PASSWORD=Abcd1234
-    - MQ_QUEUE=gateway
-    depends_on:
-     - rabbitmq
-    restart: on-failure
-    volumes:
-      - /home/ubuntu/resources/elixir/gateway/lib:/usr/src/app/lib/
-  
-  elixir-service-auth:
-    build:
-      args:
-        - MODULE=service
-      context: /home/ubuntu/resources/elixir
-    environment:
-      - SERVICE_ENV=local
-      - HOSTNAME=auth
-      - AUTHENTICATION_SECRET=2af0ba9d-78d3-429b-a7f6-8ac973598d2
-      - MQ_PROTOCOL=amqp
-      - MQ_HOSTNAME=rabbitmq
-      - MQ_PORT=5672
-      - MQ_USERNAME=admin
-      - MQ_PASSWORD=Abcd1234
-      - MQ_QUEUE=auth
-      - AWS_REGION=us-east-1
-      - DYNAMODB_URL=http://dynamodb:8000
-      - DYNAMODB_ACCESS_KEY=fakeKey
-      - DYNAMODB_ACCESS_SECRET=fakeSecret
-    depends_on:
-      - rabbitmq
-      - dynamodb
-    restart: on-failure
-    volumes:
-      - /home/ubuntu/resources/elixir/service/lib:/usr/src/app/lib
+  #     - ./elixir/service/lib:/usr/src/app/lib

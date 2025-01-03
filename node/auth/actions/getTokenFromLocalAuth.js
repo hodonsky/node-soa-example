@@ -1,16 +1,18 @@
 "use strict"
 
-import lambda from "./getTokenFn"
+import { version } from "../../package.json"
+import lambda from "./getTokenFromLocalAuthFn"
 import config from "../config"
 
 export default {
-  topic: config.topic,
-  auth: false,
-  method: "post",
-  route: "/auth",
-  action: "getToken",
+  version, // Service Version
+  topic: config.topic, // folder name
+  auth: false,         // not essential
+  method: "post",           
+  route: "/auth/localAuth",
+  action: "getTokenFromLocalAuth", // file name
   lambda: lambda,
-  requestTransformers: [
+  requestTransformers: [ // could always just be ctx from koa
     ({ request: { body: { username, password } }, header: { 'user-agent': userAgent }, ip }) =>
       ({ username, password, meta: { ip, userAgent } })
   ],
@@ -29,6 +31,6 @@ export default {
     }
   ],
   responseAVRO: [
-    { name: "token", type: "string" }
+    { name: "JWT", type: "string" }
   ]
 }

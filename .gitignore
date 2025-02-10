@@ -3,3 +3,8 @@ node_modules
 node-gateway
 node-service
 node-avro
+node-gateway.zip
+node-service.zip
+node-avro.zip
+node-soa-example.zip
+.DS_Store

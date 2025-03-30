@@ -1,5 +1,8 @@
 ## Install Virtualbox and Vagrant
 
+Wrote a small GPT for this - These docs are the authority, but this can help.
+https://chatgpt.com/g/g-QiaMnK6e4-node-soa-v2
+
 #### `$ vagrant up`
 
 

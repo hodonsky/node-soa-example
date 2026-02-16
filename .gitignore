@@ -8,3 +8,5 @@ node-service.zip
 node-avro.zip
 node-soa-example.zip
 .DS_Store
+./*/.DS_Store
+
